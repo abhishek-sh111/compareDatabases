@@ -1,26 +1,27 @@
+require('dotenv').config();
 const { Client } = require('pg');
 const fs = require('fs');
 
-// Database connection details of pre migration
+// Database connection details of pre migration,fetch from environment variables
+
+//Assuming each database has more than one table
 const dbConfigPreMigration = {
-  host: 'localhost',
-  port: 5432,
-  user: 'old',
-  password: 'hehehe',
-  database: 'old',
+  host: process.env.DB_PRE_HOST,
+  port: process.env.DB_PRE_PORT,
+  user: process.env.DB_PRE_USER,
+  password: process.env.DB_PRE_PASSWORD,
+  database: process.env.DB_PRE_DATABASE,
 };
 
 // Database connection details of post migration
-
 const dbConfigPostMigration = {
-  host: 'localhost',
-  port: 5433, 
-  user: 'new',
-  password: 'hahaha',
-  database: 'new',
+  host: process.env.DB_POST_HOST,
+  port: process.env.DB_POST_PORT,
+  user: process.env.DB_POST_USER,
+  password: process.env.DB_POST_PASSWORD,
+  database: process.env.DB_POST_DATABASE,
 };
 
-// Assuming we have more than one table in database.
 // Function to get all table names from the database
 async function getTableNames(client) {
   const res = await client.query(`
@@ -92,8 +93,10 @@ async function compareDatabases() {
     const report = [];
 
     for (const tableName of commonTableNames) {
-      const dataPreMigration = await getDataFromTable(clientPreMigration, tableName);
-      const dataPostMigration = await getDataFromTable(clientPostMigration, tableName);
+      const [dataPreMigration, dataPostMigration] = await Promise.all([
+        getDataFromTable(clientPreMigration, tableName),
+        getDataFromTable(clientPostMigration, tableName)
+      ]);
 
       // Assuming 'id' is the primary key. Change as necessary.
       const primaryKey = 'id';
@@ -102,7 +105,7 @@ async function compareDatabases() {
 
       if (differences.missingInPost.length || differences.newInPost.length || differences.corrupted.length) {
         report.push(`Table: ${tableName}`);
-        
+
         if (differences.missingInPost.length) {
           report.push('Missing in post-migration:');
           report.push(JSON.stringify(differences.missingInPost, null, 2));
