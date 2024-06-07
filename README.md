@@ -25,7 +25,7 @@ Imagine that your team recently performed a data migration from one database to 
 
 ### Setup
 
-1. **Clone the repository:**
+** 1. Clone the repository:**
 
    ```bash
    git clone https://github.com/abhishek-sh111/compareDatabases.git
