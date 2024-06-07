@@ -1,0 +1,18 @@
+Table: users
+Missing in post-migration:
+[
+  {"id": 1, "name": "John Doe", ...}
+]
+-----------------------
+New in post-migration:
+[
+  {"id": 3, "name": "Alice Wonderland", ...}
+]
+-----------------------
+Corrupted rows:
+Pre-migration: {"id": 2, "name": "Jane Smith", ...}
+Post-migration: {"id": 2, "name": "Jane Doe", ...}
+-----------------------
+Pre-migration: {"id": 2, "name": "Jane Smith", ...}
+Post-migration: {"id": 2, "name": "Jane Doe", ...}
+...
