@@ -46,24 +46,24 @@ docker run -d --name post-migration-db -p 5433:5432 guaranteedrate/homework-post
 
 
 ## Usage
-1. # Install Dependencies:
+## 1. Install Dependencies:
 
 ## Ensure you are in the project directory and install the necessary Node.js dependencies:
 
 npm install
 
-2. ## Run the Comparison Script:
+## 2. Run the Comparison Script:
 
 ## Execute the script to compare the databases and generate the report:
 
 node compareDatabases.js
 
-3. ## View the Report: (Note: You can change the destination location accordingly..)
+## 3. View the Report: (Note: You can change the destination location accordingly..)
 
 The script will output the differences to the console and save the report to a file named database_comparison_report.txt in the project directory.
 
 
-4. ## Format of output
+## 4. Format of output
 
 Output
 The report will include:
