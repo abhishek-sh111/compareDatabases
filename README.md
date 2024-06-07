@@ -28,8 +28,8 @@ Imagine that your team recently performed a data migration from one database to 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/abhishek-sh111/compareDatabases.git
+   cd compareDatabases
 
 
 ## 2.. ** Start Docker Containers:

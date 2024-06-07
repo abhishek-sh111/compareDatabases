@@ -14,7 +14,7 @@ const dbConfigPreMigration = {
 
 const dbConfigPostMigration = {
   host: 'localhost',
-  port: 5433,
+  port: 5433, 
   user: 'new',
   password: 'hahaha',
   database: 'new',
